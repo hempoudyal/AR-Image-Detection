@@ -13,6 +13,17 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    @IBAction func placeScreenButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func plusButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func minusButtonTapped(_ sender: UIButton) {
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,9 +47,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let configuration = ARImageTrackingConfiguration()
         
         guard let referenceImages = ARReferenceImage.referenceImages(inGroupNamed: "AR Resources", bundle: Bundle.main) else { return }
+        configuration.trackingImages = referenceImages
+        configuration.maximumNumberOfTrackedImages = 1
 
         // Run the view's session
         sceneView.session.run(configuration)
+        sceneView.autoenablesDefaultLighting = true
+        sceneView.automaticallyUpdatesLighting = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,14 +65,52 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // MARK: - ARSCNViewDelegate
     
-/*
+
     // Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         let node = SCNNode()
+        let animator = SCNAction.scale(by: 10, duration: 3)
      
+        if anchor is ARImageAnchor{
+            let plane = SCNPlane(width: 0.7, height: 0.35)
+            
+            let deviceScene = SKScene(fileNamed: "DeviceScene")
+            plane.firstMaterial?.diffuse.contents = deviceScene
+            plane.firstMaterial?.isDoubleSided = true
+            plane.firstMaterial?.diffuse.contentsTransform = SCNMatrix4Translate(SCNMatrix4MakeScale(1, -1, 1), 0, 1, 0)
+            
+            let planeNode = SCNNode(geometry: plane)
+            planeNode.eulerAngles.x = -.pi / 2
+            
+            var iPhoneNode = SCNNode()
+            let iPhoneScene = SCNScene(named: "art.scnassets/iPhoneX.scn")!
+            iPhoneNode = iPhoneScene.rootNode.childNodes.first!
+            iPhoneNode.position = SCNVector3(0, 0, 0.15)
+            
+            let min = iPhoneNode.boundingBox.min
+            let max = iPhoneNode.boundingBox.max
+            iPhoneNode.pivot = SCNMatrix4MakeTranslation(min.x + (max.x - min.x) / 2,
+                                                         min.y + (max.y - min.y) / 2,
+                                                         min.z + (max.z - min.z) / 2)
+            
+            let iPhoneLight = iPhoneScene.rootNode.childNodes.filter({$0.name == "spot"}).first!
+            
+            node.addChildNode(planeNode)
+            planeNode.addChildNode(iPhoneNode)
+            planeNode.addChildNode(iPhoneLight)
+            iPhoneNode.runAction(rotateObject())
+            iPhoneNode.runAction(animator)
+        }
+        
         return node
     }
-*/
+    
+    func rotateObject() -> SCNAction {
+        let action = SCNAction.rotateBy(x: 0, y: CGFloat(GLKMathDegreesToRadians(360)), z: 0, duration: 3)
+        let repeatAction = SCNAction.repeatForever(action)
+        return repeatAction
+    }
+
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user

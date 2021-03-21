@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99B6A0CD2607AB540014811B /* DeviceScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 99B6A0CC2607AB540014811B /* DeviceScene.sks */; };
 		99B934AA25CAC71B002B9FC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B934A925CAC71B002B9FC2 /* AppDelegate.swift */; };
 		99B934AC25CAC71B002B9FC2 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 99B934AB25CAC71B002B9FC2 /* art.scnassets */; };
 		99B934AE25CAC71B002B9FC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B934AD25CAC71B002B9FC2 /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		99B6A0CC2607AB540014811B /* DeviceScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = DeviceScene.sks; sourceTree = "<group>"; };
 		99B934A625CAC71B002B9FC2 /* ImageDetectionAR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageDetectionAR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99B934A925CAC71B002B9FC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99B934AB25CAC71B002B9FC2 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				99B934A925CAC71B002B9FC2 /* AppDelegate.swift */,
 				99B934AB25CAC71B002B9FC2 /* art.scnassets */,
 				99B934AD25CAC71B002B9FC2 /* ViewController.swift */,
+				99B6A0CC2607AB540014811B /* DeviceScene.sks */,
 				99B934AF25CAC71B002B9FC2 /* Main.storyboard */,
 				99B934B225CAC720002B9FC2 /* Assets.xcassets */,
 				99B934B425CAC720002B9FC2 /* LaunchScreen.storyboard */,
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99B934AC25CAC71B002B9FC2 /* art.scnassets in Resources */,
+				99B6A0CD2607AB540014811B /* DeviceScene.sks in Resources */,
 				99B934B625CAC720002B9FC2 /* LaunchScreen.storyboard in Resources */,
 				99B934B325CAC720002B9FC2 /* Assets.xcassets in Resources */,
 				99B934B125CAC71B002B9FC2 /* Main.storyboard in Resources */,
